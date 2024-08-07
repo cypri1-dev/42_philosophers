@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:51:41 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/07 16:38:29 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/07 17:21:19 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,26 @@
 # include <stdio.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <stdbool.h>
+
+/*all structs*/
+
+typedef struct s_philo
+{
+	t_data *data;
+}			t_philo;
+
+typedef struct s_data
+{
+	int	nb_philo;
+	int	tm_die;
+	int	tm_eat;
+	int	to_sleep;
+	int	nb_lunch;
+	int	nb_forks;
+	bool dead;
+	struct t_philo *philo;
+}			t_data;
 
 /*parsing*/
 
