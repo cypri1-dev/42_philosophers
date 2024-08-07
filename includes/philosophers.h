@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:51:41 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/07 16:29:17 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:38:29 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 # include "libft.h"
 # include <stdio.h>
+# include <sys/time.h>
+# include <pthread.h>
 
 /*parsing*/
 
