@@ -6,7 +6,7 @@
 #    By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 13:34:36 by cyferrei          #+#    #+#              #
-#    Updated: 2024/08/07 14:08:58 by cyferrei         ###   ########.fr        #
+#    Updated: 2024/08/07 14:43:08 by cyferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,13 +37,15 @@ PEACH   = \e[38;5;223m
 GREY    = \e[38;5;254m
 RESET   = \e[00m
 
+SOURCE = src/
 MAIN = main.c
-PHILOSPHERS = $(MAIN)
+PARSER = parser.c
+PHILOSPHERS = $(MAIN) $(PARSER)
 
-SRC = $(PHILOSPHERS)
-OBJS = $(SRC:%.c=$(OBJDIR)/%.o)
+SRC = $(addprefix $(SOURCE), $(PHILOSPHERS))
+OBJS = $(patsubst $(SOURCE)%.c, $(OBJDIR)/%.o, $(SRC))
 
-all : $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJDIR) $(OBJS)
 		@echo "$(BOLD)Linking...$(RESET)"
@@ -54,19 +56,19 @@ $(NAME): $(OBJDIR) $(OBJS)
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
-$(OBJS): $(SRC)
+$(OBJDIR)/%.o: $(SOURCE)%.c
 	@echo "$(BOLD)Compiling $<...$(RESET)"
 	$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(GREEN)$@ compiled successfully!$(RESET)"
 
 clean:
 	@echo "$(BOLD)Cleaning object files...$(RESET)"
-	$(RM) -rf $(OBJDIR)
+	$(RM) $(OBJDIR)
 	@make -s clean -C $(LIBFT_PHILOSOPHERS_PATH)
 	@echo "$(GREEN)Object files cleaned successfully!$(RESET)"
 
 fclean: clean
-	@echo "$(BOLD)Cleaning object files...$(RESET)"
+	@echo "$(BOLD)Cleaning executable...$(RESET)"
 	@make -s fclean -C $(LIBFT_PHILOSOPHERS_PATH)
 	$(RM) $(NAME)
 	@echo "$(GREEN)Executable cleaned successfully!$(RESET)"

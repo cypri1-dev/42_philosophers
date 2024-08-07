@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 13:43:00 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/07 13:54:55 by cyferrei         ###   ########.fr       */
+/*   Created: 2024/08/07 14:26:47 by cyferrei          #+#    #+#             */
+/*   Updated: 2024/08/07 14:45:13 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/philosophers.h"
+#include "../includes/philosophers.h"
 
-int	main(void)
+void	parse_philo(int argc, char **envp)
 {
-	printf("TESTS\n");
-	return(0);
+	(void)argc;
+	if (!*envp)
+	{
+		printf("Error!\nEnvironnement is missing.\n");
+		return;
+	}
 }
