@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:26:47 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/07 16:23:08 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:39:43 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	check_overflow(char **argv)
 {
-	int	i;
-	int	nb_atoi;
+	int		i;
+	int		nb_atoi;
 	char	*nb_itoa;
-	
+
 	i = 1;
 	nb_atoi = 0;
 	nb_itoa = NULL;
-	while(argv[i])
+	while (argv[i])
 	{
 		nb_atoi = ft_atoi(argv[i]);
 		nb_itoa = ft_itoa(nb_atoi);
@@ -41,14 +41,14 @@ void	check_digit(char **argv)
 {
 	int	i;
 	int	j;
-	
+
 	i = 1;
 	while (argv[i])
 	{
 		j = 0;
-		while(argv[i][j] != '\0')
+		while (argv[i][j] != '\0')
 		{
-			if(ft_isdigit(argv[i][j]))
+			if (ft_isdigit(argv[i][j]))
 				j++;
 			else
 			{
@@ -69,7 +69,7 @@ void	check_nb_args(int argc)
 	}
 }
 
-void	check_envp(char	**envp)
+void	check_envp(char **envp)
 {
 	if (!*envp)
 	{
@@ -77,6 +77,7 @@ void	check_envp(char	**envp)
 		exit(EXIT_FAILURE);
 	}
 }
+
 void	parse_philo(int argc, char **argv, char **envp)
 {
 	check_envp(envp);
