@@ -6,7 +6,7 @@
 #    By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 13:34:36 by cyferrei          #+#    #+#              #
-#    Updated: 2024/08/07 14:43:08 by cyferrei         ###   ########.fr        #
+#    Updated: 2024/08/07 16:14:05 by cyferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ RESET   = \e[00m
 
 SOURCE = src/
 MAIN = main.c
-PARSER = parser.c
+PARSER = parser.c parser_utils.c
 PHILOSPHERS = $(MAIN) $(PARSER)
 
 SRC = $(addprefix $(SOURCE), $(PHILOSPHERS))
@@ -74,9 +74,7 @@ fclean: clean
 	@echo "$(GREEN)Executable cleaned successfully!$(RESET)"
 
 leak:
-	valgrind --trace-children=yes    \
-    --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes -q  \
-    ./philosophers
+	valgrind --trace-children=yes --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes -q ./philosophers
 
 re: fclean all
 
