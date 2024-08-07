@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:26:47 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/07 15:53:13 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:23:08 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,6 @@ void	parse_philo(int argc, char **argv, char **envp)
 	check_nb_args(argc);
 	check_digit(argv);
 	check_overflow(argv);
+	check_nb_philo(argv);
+	check_time(argv);
 }
