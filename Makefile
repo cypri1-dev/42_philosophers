@@ -6,7 +6,7 @@
 #    By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 13:34:36 by cyferrei          #+#    #+#              #
-#    Updated: 2024/08/07 16:14:05 by cyferrei         ###   ########.fr        #
+#    Updated: 2024/08/07 17:22:06 by cyferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ RESET   = \e[00m
 SOURCE = src/
 MAIN = main.c
 PARSER = parser.c parser_utils.c
-PHILOSPHERS = $(MAIN) $(PARSER)
+INIT = init.c
+PHILOSPHERS = $(MAIN) $(PARSER) $(INIT)
 
 SRC = $(addprefix $(SOURCE), $(PHILOSPHERS))
 OBJS = $(patsubst $(SOURCE)%.c, $(OBJDIR)/%.o, $(SRC))
