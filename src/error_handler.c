@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 13:43:00 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/08 18:15:22 by cyferrei         ###   ########.fr       */
+/*   Created: 2024/08/08 17:42:02 by cyferrei          #+#    #+#             */
+/*   Updated: 2024/08/08 18:15:58 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-int	main(int argc, char **argv, char **envp)
+void	hdl_err_threads(t_data *data, char *msg)
 {
-	t_data	*data;
-
-	data = NULL;
-	parse_philo(argc, argv, envp);
-	init_data(argc, argv, &data);
-	create_threads(data);
+	printf("%s\n", msg);
 	free(data->philo);
 	free(data);
-	return (0);
+	exit(EXIT_FAILURE);
 }

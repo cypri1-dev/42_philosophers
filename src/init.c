@@ -15,7 +15,7 @@
 void	init_philo(t_data *data)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < data->nb_philo)
 	{

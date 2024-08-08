@@ -6,7 +6,7 @@
 #    By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 13:34:36 by cyferrei          #+#    #+#              #
-#    Updated: 2024/08/08 16:23:02 by cyferrei         ###   ########.fr        #
+#    Updated: 2024/08/08 17:55:01 by cyferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ PARSER = parser.c parser_utils.c
 INIT = init.c
 PRT_DBG = print_debug.c
 THRDS = threads.c
-PHILOSPHERS = $(MAIN) $(PARSER) $(INIT) $(PRT_DBG) $(THRDS)
+ERR = error_handler.c
+PHILOSPHERS = $(MAIN) $(PARSER) $(INIT) $(PRT_DBG) $(THRDS) $(ERR)
 
 SRC = $(addprefix $(SOURCE), $(PHILOSPHERS))
 OBJS = $(patsubst $(SOURCE)%.c, $(OBJDIR)/%.o, $(SRC))

@@ -28,7 +28,7 @@ void	check_time(char **argv)
 
 	i = 2;
 	time_atoi = 0;
-	while (argv[i] && i <=4)
+	while (argv[i] && i <= 4)
 	{
 		time_atoi = ft_atoi(argv[i]);
 		if (time_atoi <= 0)
