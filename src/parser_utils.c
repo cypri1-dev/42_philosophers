@@ -6,11 +6,20 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:05:42 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/07 16:41:16 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:22:12 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+
+void	check_nb_lunch(char **argv)
+{
+	if (ft_atoi(argv[5]) <= 0)
+	{
+		printf("Error!\nInvalid lunch number.\n");
+		exit(EXIT_FAILURE);
+	}
+}
 
 void	check_time(char **argv)
 {
@@ -19,7 +28,7 @@ void	check_time(char **argv)
 
 	i = 2;
 	time_atoi = 0;
-	while (argv[i])
+	while (argv[i] && i <=4)
 	{
 		time_atoi = ft_atoi(argv[i]);
 		if (time_atoi <= 0)
