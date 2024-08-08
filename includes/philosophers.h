@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:51:41 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/07 17:21:19 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/08 13:58:25 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,23 @@
 
 /*all structs*/
 
-typedef struct s_philo
-{
-	t_data *data;
-}			t_philo;
-
 typedef struct s_data
 {
 	int	nb_philo;
 	int	tm_die;
 	int	tm_eat;
-	int	to_sleep;
+	int	tm_sleep;
 	int	nb_lunch;
 	int	nb_forks;
 	bool dead;
 	struct t_philo *philo;
 }			t_data;
+
+typedef struct s_philo
+{
+	t_data *data;
+}			t_philo;
+
 
 /*parsing*/
 
@@ -49,5 +50,13 @@ void	check_digit(char **argv);
 void	check_overflow(char **argv);
 void	check_nb_philo(char **argv);
 void	check_time(char **argv);
+
+/*init*/
+
+void	init_data(int argc, char **argv, t_data **data);
+
+/*print_debug*/
+
+void	print_data_struct(t_data *data, int argc);
 
 #endif
