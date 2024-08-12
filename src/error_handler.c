@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:42:02 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/12 14:26:11 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/12 15:46:05 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,16 @@ void	hdl_err_mutex(t_data *data, char *msg)
 		pthread_mutex_destroy(&data->forks[i]);
 		i++;
 	}
+	free(data->philo);
 	free(data->forks);
 	free(data);
 	exit(EXIT_FAILURE);
 }
 
-void	hdl_err_threads(t_data *data, char *msg)
+void	hdl_err_philo(t_data *data, char *msg)
 {
 	printf("%s\n", msg);
-	// free(data->philo);
+	free(data->philo);
 	free(data->forks);
 	free(data);
 	exit(EXIT_FAILURE);
