@@ -6,26 +6,26 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 15:03:05 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/08 18:15:42 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:32:31 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void	print_philos(t_data *data)
-{
-	int	i;
+// void	print_philos(t_data *data)
+// {
+// 	int	i;
 
-	i = 0;
-	while (i < data->nb_philo)
-	{
-		printf("Philosopher [%d]:\n", i + 1);
-		printf("  Right fork: [%d]\n", data->philo[i].r_fork);
-		printf("  Left fork: [%d]\n", data->philo[i].l_fork);
-		printf("----------------\n");
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < data->nb_philo)
+// 	{
+// 		printf("Philosopher [%d]:\n", i + 1);
+// 		printf("  Right fork: [%d]\n", data->philo[i].r_fork);
+// 		printf("  Left fork: [%d]\n", data->philo[i].l_fork);
+// 		printf("----------------\n");
+// 		i++;
+// 	}
+// }
 
 void	print_data_struct(t_data *data, int argc)
 {
