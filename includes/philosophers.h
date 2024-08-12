@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:51:41 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/08 18:14:42 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:30:59 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@
 
 typedef struct s_philo
 {
-	struct s_data	*data;
-	int				r_fork;
-	int				l_fork;
-	int				id;
+	int	id;
+	int	nb_lunch_philo;
+	int	lft_f_id;
+	int	rgt_f_id;
+	time_t	lst_lunch;
+	pthread_t	thread_id;
+	struct t_data		*data;
 }					t_philo;
 
 typedef struct s_data
@@ -38,8 +41,11 @@ typedef struct s_data
 	int				tm_eat;
 	int				tm_sleep;
 	int				nb_lunch;
-	int				nb_forks;
+	int				all_lunch;
 	bool			dead;
+	time_t			start;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	checker_lunch;
 	pthread_mutex_t	print_mutex;
 	t_philo			*philo;
 }					t_data;
@@ -58,7 +64,6 @@ void				check_nb_lunch(char **argv);
 /*init*/
 
 void				init_data(int argc, char **argv, t_data **data);
-void				init_philo(t_data *data);
 
 /*print_debug*/
 
@@ -74,5 +79,6 @@ void				join_thread(t_data *data, pthread_t *threads, int i);
 /*errors*/
 
 void				hdl_err_threads(t_data *data, char *msg);
+void	hdl_err_mutex(t_data *data, char *msg);
 
 #endif
