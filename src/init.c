@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 17:25:29 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/12 15:45:18 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:54:39 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,20 @@ void	init_philo(t_data *data)
 {
 	int	i;
 
-	i = 0;
+	i = ZERO_INIT;
 	while(i < data->nb_philo)
 	{
 		data->philo[i].id = i;
-		data->philo[i].nb_lunch_philo = 0;
+		data->philo[i].nb_lunch_philo = ZERO_INIT;
 		data->philo[i].lft_f_id = data->philo[i].id;
-		data->philo[i].rgt_f_id = (data->philo[i].id) + 1 % data->nb_philo;
-		data->philo[i].lst_lunch = 0;
+		data->philo[i].rgt_f_id = ((data->philo[i].id) + 1) % data->nb_philo;
+		if (i == data->nb_philo - 1)
+		{
+			data->philo[i].rgt_f_id = data->philo[i].id;
+			data->philo[i].lft_f_id = ((data->philo[i].id) + 1) % data->nb_philo;
+		}
+		//printf("philo[%d]: rght_f: %d| left_f:%d\n", data->philo[i].id, data->philo[i].rgt_f_id, data->philo[i].lft_f_id);
+		data->philo[i].lst_lunch = ZERO_INIT;
 		data->philo[i].data = data;		
 		i++;
 	}
@@ -33,7 +39,7 @@ void	init_mutex(t_data *data)
 {
 	int	i;
 
-	i = 0;
+	i = ZERO_INIT;
 	while(i < data->nb_philo)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
@@ -45,7 +51,7 @@ void	init_mutex(t_data *data)
 	if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
 	{
 		pthread_mutex_destroy(&data->checker_lunch);
-		hdl_err_mutex(data, "Failed to initialize lunch_mutex");
+		hdl_err_mutex(data, "Failed to initialize print_mutex");
 	}
 }
 
@@ -65,8 +71,8 @@ void	init_data(int argc, char **argv, t_data **data)
 		(*data)->nb_lunch = ft_atoi(argv[5]);
 	else
 		(*data)->nb_lunch = -1;
-	(*data)->all_lunch = 0;
-	(*data)->dead = 0;
+	(*data)->all_lunch = ZERO_INIT;
+	(*data)->dead = ZERO_INIT;
 	(*data)->philo = malloc(sizeof(t_philo) * (*data)->nb_philo);
 	if (!(*data)->philo)
 	{
