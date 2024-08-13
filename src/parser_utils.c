@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:05:42 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/08 14:22:12 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/13 14:35:49 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_time(char **argv)
 	int	time_atoi;
 
 	i = 2;
-	time_atoi = 0;
+	time_atoi = ZERO_INIT;
 	while (argv[i] && i <= 4)
 	{
 		time_atoi = ft_atoi(argv[i]);
@@ -46,7 +46,7 @@ void	check_nb_philo(char **argv)
 	int	nb_philo;
 
 	i = 1;
-	nb_philo = 0;
+	nb_philo = ZERO_INIT;
 	nb_philo = ft_atoi(argv[i]);
 	if (nb_philo <= 0 || nb_philo > 200)
 	{

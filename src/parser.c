@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:26:47 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/08 14:18:26 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/13 14:35:08 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	check_overflow(char **argv)
 	char	*nb_itoa;
 
 	i = 1;
-	nb_atoi = 0;
+	nb_atoi = ZERO_INIT;
 	nb_itoa = NULL;
 	while (argv[i])
 	{
@@ -45,7 +45,7 @@ void	check_digit(char **argv)
 	i = 1;
 	while (argv[i])
 	{
-		j = 0;
+		j = ZERO_INIT;
 		while (argv[i][j] != '\0')
 		{
 			if (ft_isdigit(argv[i][j]))
