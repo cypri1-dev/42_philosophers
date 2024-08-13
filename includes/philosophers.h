@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:51:41 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/12 15:49:33 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:03:52 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 # include <stdio.h>
 # include <sys/time.h>
 
+/*all defines*/
+
+# define ZERO_INIT 0
+
 /*all structs*/
 
 typedef struct s_philo
@@ -29,7 +33,7 @@ typedef struct s_philo
 	int	nb_lunch_philo;
 	int	lft_f_id;
 	int	rgt_f_id;
-	time_t	lst_lunch;
+	long	lst_lunch;
 	pthread_t	thread_id;
 	struct s_data		*data;
 }					t_philo;
@@ -43,7 +47,7 @@ typedef struct s_data
 	int				nb_lunch;
 	int				all_lunch;
 	bool			dead;
-	time_t			start;
+	long			start;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	checker_lunch;
 	pthread_mutex_t	print_mutex;
@@ -73,12 +77,14 @@ void				print_philos(t_data *data);
 
 /*threads*/
 
-void				create_threads(t_data *data);
+int					create_threads(t_data *data);
 void				init_thread_philo(t_data *data, pthread_t *threads, int i);
 void				join_thread(t_data *data, pthread_t *threads, int i);
+long				get_curr_time();
 
-/*errors*/
+/*errors - free*/
 
+void	free_handler(t_data *data);
 void				hdl_err_philo(t_data *data, char *msg);
 void	hdl_err_mutex(t_data *data, char *msg);
 
