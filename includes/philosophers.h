@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:51:41 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/13 16:03:52 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:40:27 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int					create_threads(t_data *data);
 void				init_thread_philo(t_data *data, pthread_t *threads, int i);
 void				join_thread(t_data *data, pthread_t *threads, int i);
 long				get_curr_time();
+void	ft_print_forks_mutex(t_philo *philo);
+void	ft_print_eat_mutex(t_philo *philo);
 
 /*errors - free*/
 
