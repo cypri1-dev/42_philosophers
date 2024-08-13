@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 15:59:56 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/13 16:49:07 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:40:41 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,16 @@ void	*routine(void *arg)
 	while(i < 1) // cond will be while(data->dead == 0)
 	{
 		pthread_mutex_lock(&data_ref->forks[philo->rgt_f_id]);
+		ft_print_forks_mutex(philo);
 		pthread_mutex_lock(&data_ref->forks[philo->lft_f_id]);
-		pthread_mutex_lock(&data_ref->print_mutex);
-		printf("Je suis le philosophe[%d] et ma f_g a pour id:[%d] et ma f_d a pour id:[%d]\n", philo->id, philo->lft_f_id, philo->rgt_f_id);
-		pthread_mutex_unlock(&data_ref->print_mutex);
-		pthread_mutex_unlock(&data_ref->forks[philo->rgt_f_id]);
-		pthread_mutex_unlock(&data_ref->forks[philo->lft_f_id]);
+		ft_print_forks_mutex(philo);
+		ft_print_eat_mutex(philo);
+		// pthread_mutex_lock(&data_ref->forks[philo->lft_f_id]);
+		// pthread_mutex_lock(&data_ref->print_mutex);
+		// printf("Je suis le philosophe[%d] et ma f_g a pour id:[%d] et ma f_d a pour id:[%d]\n", philo->id, philo->lft_f_id, philo->rgt_f_id);
+		// pthread_mutex_unlock(&data_ref->print_mutex);
+		// pthread_mutex_unlock(&data_ref->forks[philo->rgt_f_id]);
+		// pthread_mutex_unlock(&data_ref->forks[philo->lft_f_id]);
 		// pthread_mutex_lock(&data_ref->print_mutex);
 		// printf("Je suis le philo %d et je vis !\n", philo->id);
 		// pthread_mutex_unlock(&data_ref->print_mutex);
