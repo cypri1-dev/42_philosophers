@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 15:03:05 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/12 14:32:31 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/14 13:44:57 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	print_data_struct(t_data *data, int argc)
 {
 	printf("nb_philo: [%d]\n", data->nb_philo);
 	printf("----------------\n");
-	printf("tm_die: [%d ms]\n", data->tm_die);
+	printf("tm_die: [%ld ms]\n", data->tm_die);
 	printf("----------------\n");
-	printf("tm_eat: [%d ms]\n", data->tm_eat);
+	printf("tm_eat: [%ld ms]\n", data->tm_eat);
 	printf("----------------\n");
-	printf("tm_sleep: [%d ms]\n", data->tm_sleep);
+	printf("tm_sleep: [%ld ms]\n", data->tm_sleep);
 	if (argc == 6)
 	{
 		printf("----------------\n");

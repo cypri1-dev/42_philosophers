@@ -6,33 +6,46 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:41:32 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/13 18:04:35 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/14 15:18:12 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void	ft_print_eat_mutex(t_philo *philo)
+void	sleep_and_check(t_data *data)
 {
-	pthread_mutex_lock(&philo->data->checker_lunch);
-	pthread_mutex_lock(&philo->data->print_mutex);
-	printf("Philosopher [%d] is eating\n", philo->id);
-	philo->lst_lunch = get_curr_time();
-	pthread_mutex_unlock(&philo->data->print_mutex);
-	pthread_mutex_unlock(&philo->data->checker_lunch);
+	time_t	tm_ref;
+
+	tm_ref = ZERO_INIT;
+	tm_ref = get_curr_time();
+	while(!data->dead)
+	{
+		if (get_curr_time() - tm_ref >= data->tm_sleep)
+			break;
+		//ajouter un usleep ?
+	}
 }
 
-void	ft_print_forks_mutex(t_philo *philo)
+void	eat_and_check(t_data *data)
 {
-	pthread_mutex_lock(&philo->data->print_mutex);
-	printf("Philosopher [%d] took a fork\n", philo->id);
-	pthread_mutex_unlock(&philo->data->print_mutex);
+	time_t	tm_ref;
+
+	tm_ref = ZERO_INIT;
+	tm_ref = get_curr_time();
+	// dprintf(2, "ref: %ld | diff %ld\n", tm_ref, ();
+	while(!data->dead)
+	{
+		if (get_curr_time() - tm_ref >= data->tm_eat)
+			break;
+		//ajouter un usleep ?
+	}
+	dprintf(2, "TEST\n");
 }
 
-long	get_curr_time()
+time_t	get_curr_time()
 {
 	struct timeval	tv;
-	long	res_conv;
+	time_t	res_conv;
 
 	res_conv = ZERO_INIT;
 	gettimeofday(&tv, NULL);

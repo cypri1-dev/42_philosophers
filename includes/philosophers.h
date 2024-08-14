@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:51:41 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/13 17:40:27 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/14 15:21:02 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_philo
 	int	nb_lunch_philo;
 	int	lft_f_id;
 	int	rgt_f_id;
-	long	lst_lunch;
+	time_t	lst_lunch;
 	pthread_t	thread_id;
 	struct s_data		*data;
 }					t_philo;
@@ -41,13 +41,13 @@ typedef struct s_philo
 typedef struct s_data
 {
 	int				nb_philo;
-	int				tm_die;
-	int				tm_eat;
-	int				tm_sleep;
+	time_t				tm_die;
+	time_t				tm_eat;
+	time_t				tm_sleep;
+	time_t			start;
 	int				nb_lunch;
 	int				all_lunch;
 	bool			dead;
-	long			start;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	checker_lunch;
 	pthread_mutex_t	print_mutex;
@@ -80,9 +80,16 @@ void				print_philos(t_data *data);
 int					create_threads(t_data *data);
 void				init_thread_philo(t_data *data, pthread_t *threads, int i);
 void				join_thread(t_data *data, pthread_t *threads, int i);
-long				get_curr_time();
+time_t				get_curr_time();
 void	ft_print_forks_mutex(t_philo *philo);
 void	ft_print_eat_mutex(t_philo *philo);
+void	ft_print_sleep_mutex(t_philo *philo);
+void	ft_print_think_mutex(t_philo *philo);
+void	ft_print_dead_mutex(t_philo *philo);
+void	eat_and_check(t_data *data);
+void	sleep_and_check(t_data *data);
+void	checker_all_ate(t_data *data);
+void	ft_supervisor(t_data *data);
 
 /*errors - free*/
 
