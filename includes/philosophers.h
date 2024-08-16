@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:51:41 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/16 12:29:14 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/16 15:09:50 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_data
 	int				nb_lunch;
 	int				all_lunch;
 	bool			dead;
+	pthread_mutex_t	dead_mtx;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	checker_lunch;
 	pthread_mutex_t	print_mutex;
@@ -93,6 +94,11 @@ void	eat_and_check(t_data *data);
 void	sleep_and_check(t_data *data);
 void	checker_all_ate(t_data *data);
 void	ft_supervisor(t_data *data);
+void	*routine_solo(void *arg);
+void	*routine(void *arg);
+void	setter(pthread_mutex_t *mtx, bool *dead, bool value);
+bool	getter(pthread_mutex_t *mtx, bool *dead);
+void	setter_time(pthread_mutex_t *mtx, time_t *time, time_t value);
 
 /*errors - free*/
 

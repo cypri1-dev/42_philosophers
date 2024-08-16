@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:41:32 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/14 15:18:12 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/16 17:21:02 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,43 @@
 void	sleep_and_check(t_data *data)
 {
 	time_t	tm_ref;
+	time_t	remaining_time;
+	time_t	interval;
 
-	tm_ref = ZERO_INIT;
 	tm_ref = get_curr_time();
-	while(!data->dead)
+	while (!getter(&data->dead_mtx, &data->dead))
 	{
-		if (get_curr_time() - tm_ref >= data->tm_sleep)
+		remaining_time = data->tm_sleep - (get_curr_time() - tm_ref);
+		if (remaining_time <= 0)
 			break;
-		//ajouter un usleep ?
+
+		interval = remaining_time / 2;
+		if (interval < 10)
+			interval = 10; // Intervalle minimum de 10ms
+
+		usleep(50); 
 	}
 }
 
 void	eat_and_check(t_data *data)
 {
 	time_t	tm_ref;
+	time_t	remaining_time;
+	time_t	interval;
 
-	tm_ref = ZERO_INIT;
 	tm_ref = get_curr_time();
-	// dprintf(2, "ref: %ld | diff %ld\n", tm_ref, ();
-	while(!data->dead)
+	while (!getter(&data->dead_mtx, &data->dead))
 	{
-		if (get_curr_time() - tm_ref >= data->tm_eat)
+		remaining_time = data->tm_eat - (get_curr_time() - tm_ref);
+		//dprintf(2, "ICI: %ld | id: %d\n", remaining_time, data->philo->id);
+		if (remaining_time <= 0)
 			break;
-		//ajouter un usleep ?
+		interval = remaining_time / 2;
+		if (interval < 10)
+			interval = 10; // Intervalle minimum de 10ms
+
+		usleep(50);
 	}
-	dprintf(2, "TEST\n");
 }
 
 time_t	get_curr_time()
