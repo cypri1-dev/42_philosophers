@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 15:59:56 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/14 15:26:51 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:11:33 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_supervisor(t_data *data)
 			ft_print_dead_mutex(data->philo);
 			data->dead = 1;
 		}
-		pthread_mutex_unlock(&data->print_mutex);
+		pthread_mutex_unlock(&data->checker_lunch);
 		// usleep ?
 		if (data->dead)
 			break;
