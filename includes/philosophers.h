@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:51:41 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/14 15:21:02 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/16 12:29:14 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 
 /*all includes*/
 
-# include "libft.h"
+# include <stddef.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 # include <pthread.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -96,5 +99,14 @@ void	ft_supervisor(t_data *data);
 void	free_handler(t_data *data);
 void				hdl_err_philo(t_data *data, char *msg);
 void	hdl_err_mutex(t_data *data, char *msg);
+
+/*functions utils*/
+
+int	ft_strncmp(const char *first, const char *second, size_t length);
+int	ft_isdigit(int c);
+int	ft_int_len(int n);
+char	*ft_itoa(int n);
+int	ft_atoi(const char *nbr);
+size_t	ft_strlen(const char *s);
 
 #endif
