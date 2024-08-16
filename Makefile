@@ -6,7 +6,7 @@
 #    By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 13:34:36 by cyferrei          #+#    #+#              #
-#    Updated: 2024/08/14 13:57:52 by cyferrei         ###   ########.fr        #
+#    Updated: 2024/08/16 12:42:47 by cyferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,6 @@ RM = rm -rf
 CFLAGS = -Wall -Wextra -Werror -g3
 OBJDIR = obj
 # -fsanitize=address -fno-omit-frame-pointer -fsanitize=undefined -fstack-protector-strong -fno-optimize-sibling-calls
-
-LIBFT_PHILOSOPHERS_PATH = libft
-LIBFT_PHILOSOPHERS = libft/libft.a
 
 BOLD    = \e[1m
 FADE    = \e[2m
@@ -38,6 +35,7 @@ GREY    = \e[38;5;254m
 RESET   = \e[00m
 
 SOURCE = src/
+UTILS = functions_utils.c functions.c
 MAIN = main.c
 PARSER = parser.c parser_utils.c
 INIT = init.c
@@ -45,7 +43,7 @@ PRT_DBG = print_debug.c
 THRDS = threads.c threads_utils.c
 FREE_ERR = error_handler.c free_handler.c
 PRINT = ft_print.c
-PHILOSPHERS = $(MAIN) $(PARSER) $(INIT) $(PRT_DBG) $(THRDS) $(FREE_ERR) $(PRINT)
+PHILOSPHERS = $(MAIN) $(PARSER) $(INIT) $(PRT_DBG) $(THRDS) $(FREE_ERR) $(PRINT) $(UTILS)
 
 SRC = $(addprefix $(SOURCE), $(PHILOSPHERS))
 OBJS = $(patsubst $(SOURCE)%.c, $(OBJDIR)/%.o, $(SRC))
@@ -54,8 +52,7 @@ all: $(NAME)
 
 $(NAME): $(OBJDIR) $(OBJS)
 		@echo "$(BOLD)Linking...$(RESET)"
-		@make -sC $(LIBFT_PHILOSOPHERS_PATH)
-		$(CC) $(CFLAGS) $(OBJS) $(LIBFT_PHILOSOPHERS) -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 		@echo "$(GREEN)Executable '$(NAME)' created successfully!$(RESET)"
 
 $(OBJDIR):
@@ -69,12 +66,10 @@ $(OBJDIR)/%.o: $(SOURCE)%.c
 clean:
 	@echo "$(BOLD)Cleaning object files...$(RESET)"
 	$(RM) $(OBJDIR)
-	@make -s clean -C $(LIBFT_PHILOSOPHERS_PATH)
 	@echo "$(GREEN)Object files cleaned successfully!$(RESET)"
 
 fclean: clean
 	@echo "$(BOLD)Cleaning executable...$(RESET)"
-	@make -s fclean -C $(LIBFT_PHILOSOPHERS_PATH)
 	$(RM) $(NAME)
 	@echo "$(GREEN)Executable cleaned successfully!$(RESET)"
 
@@ -84,3 +79,4 @@ leak:
 re: fclean all
 
 .PHONY: all clean fclean re
+
