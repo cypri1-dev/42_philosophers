@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:41:32 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/19 14:29:41 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:50:30 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	eat_and_check(t_data *data)
 	tm_ref = get_curr_time();
 	while (!getter(&data->dead_mtx, &data->dead))
 	{
-		remaining_time = data->tm_eat - (get_curr_time() - tm_ref + 4);
+		remaining_time = data->tm_eat - (get_curr_time() - tm_ref);
 		if (remaining_time <= 0)
 			break;
 		usleep(50);

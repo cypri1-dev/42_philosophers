@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 13:56:52 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/19 14:29:25 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:59:46 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	ft_print_think_mutex(t_philo *philo)
 	pthread_mutex_lock(&philo->data->print_mutex);
 	printf("%ld %d is thinking\n", get_curr_time() - philo->data->start, philo->id);
 	pthread_mutex_unlock(&philo->data->print_mutex);
+	if (philo->data->nb_philo % 2 != 0)
+		usleep(100);
 }
 
 void	ft_print_sleep_mutex(t_philo *philo)
