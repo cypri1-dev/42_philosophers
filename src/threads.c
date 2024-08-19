@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 15:59:56 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/19 14:29:58 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:27:05 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,8 @@ void	*routine(void *arg)
 		pthread_mutex_unlock(&data_ref->forks[philo->rgt_f_id]);
 		pthread_mutex_unlock(&data_ref->forks[philo->lft_f_id]);
 		if(getter(&philo->data->dead_mtx, &philo->data->dead))
+			return(NULL);
+		if (data_ref->all_lunch)
 			return(NULL);
 		ft_print_sleep_mutex(philo);
 		sleep_and_check(data_ref);
