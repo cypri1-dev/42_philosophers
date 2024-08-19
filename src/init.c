@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 17:25:29 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/19 12:56:03 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:30:06 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	init_philo(t_data *data)
 			data->philo[i].rgt_f_id = data->philo[i].id;
 			data->philo[i].lft_f_id = ((data->philo[i].id) + 1) % data->nb_philo;
 		}
-		//printf("philo[%d]: rght_f: %d| left_f:%d\n", data->philo[i].id, data->philo[i].rgt_f_id, data->philo[i].lft_f_id);
 		data->philo[i].lst_lunch = ZERO_INIT;
 		data->philo[i].data = data;		
 		i++;

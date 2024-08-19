@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 15:59:56 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/19 14:09:24 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:29:58 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,9 @@ void	ft_supervisor(t_data *data)
 			usleep(100);
 		}	
 		if (getter(&data->dead_mtx, &data->dead))
-		{
-			// dprintf(2, "DEAD\n");
 			return;
-		}
 		if (data->nb_lunch != -1)
 			checker_all_ate(data);
-		// usleep(100);
 	}
 }
 
@@ -119,11 +115,18 @@ void	*routine(void *arg)
 	{
 		pthread_mutex_lock(&data_ref->forks[philo->rgt_f_id]);
 		if(getter(&philo->data->dead_mtx, &philo->data->dead))
+		{
+			pthread_mutex_unlock(&data_ref->forks[philo->rgt_f_id]);
 			return(NULL);
+		}
 		ft_print_forks_mutex(philo);
 		pthread_mutex_lock(&data_ref->forks[philo->lft_f_id]);
 		if(getter(&philo->data->dead_mtx, &philo->data->dead))
+		{
+			pthread_mutex_unlock(&data_ref->forks[philo->rgt_f_id]);
+			pthread_mutex_unlock(&data_ref->forks[philo->lft_f_id]);
 			return(NULL);
+		}
 		ft_print_forks_mutex(philo);
 		if(getter(&philo->data->dead_mtx, &philo->data->dead))
 		return(NULL);
@@ -134,7 +137,6 @@ void	*routine(void *arg)
 		pthread_mutex_unlock(&data_ref->forks[philo->lft_f_id]);
 		if(getter(&philo->data->dead_mtx, &philo->data->dead))
 			return(NULL);
-		//add rule if (argc == 6)
 		ft_print_sleep_mutex(philo);
 		sleep_and_check(data_ref);
 		if(getter(&philo->data->dead_mtx, &philo->data->dead))
