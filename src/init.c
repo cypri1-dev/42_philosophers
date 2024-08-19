@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 17:25:29 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/16 14:05:46 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/19 12:56:03 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ void	init_mutex(t_data *data)
 	}
 	if(pthread_mutex_init(&data->dead_mtx, NULL) != 0)
 	{
+		pthread_mutex_destroy(&data->print_mutex);
+		pthread_mutex_destroy(&data->checker_lunch);
+		hdl_err_mutex(data, "Failed to initialize dead_mutex");
+	}
+	if(pthread_mutex_init(&data->time_die_mtx, NULL) != 0)
+	{
+		pthread_mutex_destroy(&data->dead_mtx);
 		pthread_mutex_destroy(&data->print_mutex);
 		pthread_mutex_destroy(&data->checker_lunch);
 		hdl_err_mutex(data, "Failed to initialize dead_mutex");
