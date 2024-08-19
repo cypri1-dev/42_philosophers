@@ -6,11 +6,21 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 15:59:56 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/16 17:32:42 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:09:24 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+
+time_t	getter_time(pthread_mutex_t *mtx, time_t *time)
+{
+	time_t tmp;
+	
+	pthread_mutex_lock(mtx);
+	tmp = *time;
+	pthread_mutex_unlock(mtx);
+	return (tmp);
+}
 
 void	setter_time(pthread_mutex_t *mtx, time_t *time, time_t value)
 {
@@ -57,17 +67,18 @@ void	ft_supervisor(t_data *data)
 		int i = 0;
 		while (i < data->nb_philo)
 		{
-			if (get_curr_time() - data->philo[i].lst_lunch >= data->tm_die)
+			if (get_curr_time() - getter_time(&data->checker_lunch, &data->philo[i].lst_lunch) >= getter_time(&data->time_die_mtx, &data->tm_die))
 			{
 				setter(&data->dead_mtx, &data->dead, 1);
 				ft_print_dead_mutex(&data->philo[i]);
 				break;
 			}
 			i++;
+			usleep(100);
 		}	
 		if (getter(&data->dead_mtx, &data->dead))
 		{
-			dprintf(2, "DEAD\n");
+			// dprintf(2, "DEAD\n");
 			return;
 		}
 		if (data->nb_lunch != -1)
@@ -102,6 +113,8 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	data_ref = philo->data;
 
+	if (philo->id % 2)
+		usleep(15000);
 	while(!getter(&data_ref->dead_mtx, &data_ref->dead))
 	{
 		pthread_mutex_lock(&data_ref->forks[philo->rgt_f_id]);
@@ -113,7 +126,7 @@ void	*routine(void *arg)
 			return(NULL);
 		ft_print_forks_mutex(philo);
 		if(getter(&philo->data->dead_mtx, &philo->data->dead))
-			return(NULL);
+		return(NULL);
 		ft_print_eat_mutex(philo);
 		eat_and_check(data_ref);
 		philo->nb_lunch_philo += 1;
