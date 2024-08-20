@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:51:41 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/19 12:59:02 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:37:51 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_data
 	pthread_mutex_t	checker_lunch;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	time_die_mtx;
+	pthread_mutex_t	all_lunch_mtx;
+	pthread_mutex_t	nb_lunch_mtx;
 	t_philo			*philo;
 }					t_data;
 
@@ -93,7 +95,7 @@ void	ft_print_think_mutex(t_philo *philo);
 void	ft_print_dead_mutex(t_philo *philo);
 void	eat_and_check(t_data *data);
 void	sleep_and_check(t_data *data);
-void	checker_all_ate(t_data *data);
+int	checker_all_ate(t_data *data);
 void	ft_supervisor(t_data *data);
 void	*routine_solo(void *arg);
 void	*routine(void *arg);
