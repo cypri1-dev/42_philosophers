@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_handler.c                                     :+:      :+:    :+:   */
+/*   getter_setter_one.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 15:55:40 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/20 12:54:44 by cyferrei         ###   ########.fr       */
+/*   Created: 2024/08/20 12:51:08 by cyferrei          #+#    #+#             */
+/*   Updated: 2024/08/20 13:05:12 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void	free_handler(t_data *data)
+void	setter_time(pthread_mutex_t *mtx, time_t *time, time_t value)
 {
-	int	i;
+	pthread_mutex_lock(mtx);
+	*time = value;
+	pthread_mutex_unlock(mtx);
+}
 
-	i = ZERO_INIT;
-	while (i < data->nb_philo)
-	{
-		pthread_mutex_destroy(&data->forks[i]);
-		i++;
-	}
-	pthread_mutex_destroy(&data->dead_mtx);
-	pthread_mutex_destroy(&data->print_mutex);
-	pthread_mutex_destroy(&data->checker_lunch);
-	free(data->philo);
-	free(data->forks);
-	free(data);
+void	setter(pthread_mutex_t *mtx, bool *dead, bool value)
+{
+	pthread_mutex_lock(mtx);
+	*dead = value;
+	pthread_mutex_unlock(mtx);
+}
+
+bool	getter(pthread_mutex_t *mtx, bool *dead)
+{
+	bool	tmp;
+
+	pthread_mutex_lock(mtx);
+	tmp = *dead;
+	pthread_mutex_unlock(mtx);
+	return (tmp);
 }

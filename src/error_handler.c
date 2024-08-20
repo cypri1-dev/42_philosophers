@@ -18,7 +18,7 @@ void	hdl_err_mutex(t_data *data, char *msg)
 
 	i = 0;
 	printf("%s\n", msg);
-	while(i < data->nb_philo)
+	while (i < data->nb_philo)
 	{
 		pthread_mutex_destroy(&data->forks[i]);
 		i++;

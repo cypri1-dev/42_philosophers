@@ -6,12 +6,12 @@
 #    By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 13:34:36 by cyferrei          #+#    #+#              #
-#    Updated: 2024/08/20 12:11:03 by cyferrei         ###   ########.fr        #
+#    Updated: 2024/08/20 14:39:04 by cyferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-CC = gc
+CC = cc
 RM = rm -rf
 CFLAGS = -Wall -Wextra -Werror -g3
 OBJDIR = obj
@@ -40,10 +40,11 @@ MAIN = main.c
 PARSER = parser.c parser_utils.c
 INIT = init.c
 PRT_DBG = print_debug.c
-THRDS = threads.c threads_utils.c
+THRDS = threads.c threads_one.c threads_two.c threads_utils.c
 FREE_ERR = error_handler.c free_handler.c
 PRINT = ft_print.c
-PHILOSPHERS = $(MAIN) $(PARSER) $(INIT) $(PRT_DBG) $(THRDS) $(FREE_ERR) $(PRINT) $(UTILS)
+GET_SET = getter_setter.c getter_setter_one.c
+PHILOSPHERS = $(MAIN) $(PARSER) $(INIT) $(PRT_DBG) $(THRDS) $(FREE_ERR) $(PRINT) $(UTILS) $(GET_SET)
 
 SRC = $(addprefix $(SOURCE), $(PHILOSPHERS))
 OBJS = $(patsubst $(SOURCE)%.c, $(OBJDIR)/%.o, $(SRC))
