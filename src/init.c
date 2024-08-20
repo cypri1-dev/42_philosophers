@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 17:25:29 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/08/19 14:30:06 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:38:37 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,23 @@ void	init_mutex(t_data *data)
 	}
 	if(pthread_mutex_init(&data->time_die_mtx, NULL) != 0)
 	{
+		pthread_mutex_destroy(&data->dead_mtx);
+		pthread_mutex_destroy(&data->print_mutex);
+		pthread_mutex_destroy(&data->checker_lunch);
+		hdl_err_mutex(data, "Failed to initialize dead_mutex");
+	}
+	if(pthread_mutex_init(&data->all_lunch_mtx, NULL) != 0)
+	{
+		pthread_mutex_destroy(&data->time_die_mtx);
+		pthread_mutex_destroy(&data->dead_mtx);
+		pthread_mutex_destroy(&data->print_mutex);
+		pthread_mutex_destroy(&data->checker_lunch);
+		hdl_err_mutex(data, "Failed to initialize dead_mutex");
+	}
+	if(pthread_mutex_init(&data->nb_lunch_mtx, NULL) != 0)
+	{
+		pthread_mutex_destroy(&data->all_lunch_mtx);
+		pthread_mutex_destroy(&data->time_die_mtx);
 		pthread_mutex_destroy(&data->dead_mtx);
 		pthread_mutex_destroy(&data->print_mutex);
 		pthread_mutex_destroy(&data->checker_lunch);
