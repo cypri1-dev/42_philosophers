@@ -6,16 +6,16 @@
 #    By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/07 13:34:36 by cyferrei          #+#    #+#              #
-#    Updated: 2024/08/16 12:42:47 by cyferrei         ###   ########.fr        #
+#    Updated: 2024/08/20 12:11:03 by cyferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-CC = cc
+CC = gc
 RM = rm -rf
 CFLAGS = -Wall -Wextra -Werror -g3
 OBJDIR = obj
-# -fsanitize=address -fno-omit-frame-pointer -fsanitize=undefined -fstack-protector-strong -fno-optimize-sibling-calls
+#-fsanitize=address -fno-omit-frame-pointer -fsanitize=undefined -fstack-protector-strong -fno-optimize-sibling-calls
 
 BOLD    = \e[1m
 FADE    = \e[2m
