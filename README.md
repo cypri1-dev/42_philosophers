@@ -21,6 +21,6 @@ The philosophers project offers the following features:
 ## Example
 To see the philosophers simulation in action with 5 philosophers, where each philosopher dies if they do not eat within 800ms, takes 200ms to eat, and sleeps for 100ms:
 ```bash
-./philosophers 5 800 200 100
+./philo 5 800 200 100
 ```
 For more detailed information, please refer to the project documentation and the source code comments.
