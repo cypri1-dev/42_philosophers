@@ -10,7 +10,7 @@ This is an overview of the main components located in the "sources" directory of
 ## Usage
 To use the philosophers program, compile it using the provided Makefile. Then, run the program with the required arguments:
 ```bash
-./philosophers number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
+./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
 ```
 ## Features
 The philosophers project offers the following features:
